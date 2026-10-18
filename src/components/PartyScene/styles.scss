@@ -1,0 +1,219 @@
+.party-scene {
+  position: relative;
+  display: block;
+  padding: clamp(205px, 54vw, 250px) 18px 275px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(#3b5bff20 0.7px, transparent 1px) 0 0 / 6px 6px,
+    var(--party-paper);
+
+  &__paper {
+    position: absolute;
+    z-index: -2;
+    pointer-events: none;
+    &--pink {
+      inset: -5% 48% 12% -22%;
+      background: #ff6ec755;
+      transform: rotate(-9deg);
+      border-right: 2px dashed #ff4fa35c;
+    }
+    &--blue {
+      inset: 66% -22% -10% 24%;
+      background: #5ec8ff70;
+      transform: rotate(-10deg);
+      border-top: 8px solid #3b5bff35;
+    }
+  }
+  &__graphics {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  &__doodles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.075;
+  }
+  &__decal {
+    position: absolute;
+    bottom: 155px;
+    left: 32%;
+    width: 155px;
+    opacity: 0.28;
+    transform: rotate(18deg);
+  }
+  &__checker {
+    position: absolute;
+    bottom: -25px;
+    right: -20px;
+    width: 66%;
+    height: 195px;
+    opacity: 0.36;
+    background: conic-gradient(
+        var(--party-blue) 25%,
+        transparent 0 50%,
+        var(--party-blue) 0 75%,
+        transparent 0
+      )
+      0 0 / 30px 30px;
+    transform: rotate(-10deg);
+  }
+  // Each group shares the stage; only the paper reserves flow space for its text.
+  &__top,
+  &__side,
+  &__base {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  &__banner {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 64%;
+    max-width: 400px;
+    z-index: 5;
+    transform: translateX(-50%);
+    text-align: center;
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    span {
+      display: none;
+    }
+  }
+  &__message-layer {
+    position: relative;
+    z-index: 30;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    pointer-events: none;
+  }
+  &__confetti {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    overflow: hidden;
+    pointer-events: none;
+    i {
+      position: absolute;
+      top: -25px;
+      display: block;
+      width: 9px;
+      height: 15px;
+      opacity: 0;
+      &:nth-child(3n) {
+        border-radius: 50%;
+        width: 11px;
+        height: 11px;
+      }
+      &:nth-child(3n + 1) {
+        clip-path: polygon(
+          50% 0,
+          62% 33%,
+          100% 38%,
+          72% 62%,
+          81% 100%,
+          50% 78%,
+          18% 100%,
+          27% 62%,
+          0 38%,
+          37% 33%
+        );
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+@media (min-width: 520px) and (max-width: 959px) {
+  .party-scene {
+    padding: 280px 45px 310px;
+    &__banner {
+      top: 0;
+      width: 43%;
+    }
+    &__decal {
+      width: 30px;
+      bottom: 150px;
+    }
+  }
+}
+
+@media (min-width: 960px) {
+  .party-scene {
+    padding: 140px 275px 265px;
+    &__banner {
+      top: 6px;
+      width: 400px;
+    }
+    &__banner span {
+      display: inline-block;
+      margin-top: 2px;
+      padding: 3px 9px;
+      background: var(--party-yellow);
+      color: var(--party-navy);
+      font-family: "Fredoka", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 2px 2px 0 var(--party-pink);
+    }
+    &__decal {
+      bottom: 75px;
+      left: 31%;
+      width: 225px;
+      opacity: 0.25;
+    }
+    &__checker {
+      height: 260px;
+      width: 48%;
+    }
+  }
+}
+
+@media (max-width: 959px) {
+  .party-scene {
+    height: 100%;
+    padding: 0;
+    &__message-layer {
+      position: absolute;
+      top: var(--collage-top, 100px);
+      left: 10px;
+      right: 10px;
+    }
+    &__banner {
+      width: min(100%, 400px);
+      top: -50px;
+    }
+    &__decal {
+      width: 120px;
+      bottom: 15px;
+      opacity: 0.2;
+    }
+    &__checker {
+      height: min(150px, var(--collage-base, 150px));
+    }
+  }
+}
+
+@media (max-width: 959px) and (max-height: 700px) {
+  .party-scene {
+    &__decal,
+    &__doodles {
+      display: none;
+    }
+    &__banner {
+      width: 52%;
+    }
+  }
+}
