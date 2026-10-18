@@ -165,8 +165,8 @@
       right: 10px;
     }
     &__banner {
-      width: min(100%, 400px);
-      top: -50px;
+      width: min(var(--composition-width, 100%), 400px);
+      top: calc(-50 * var(--composition-unit, 1px));
     }
     &__decal {
       width: 120px;
@@ -183,9 +183,6 @@
   .party-scene {
     &__decal {
       display: none;
-    }
-    &__banner {
-      width: 52%;
     }
   }
 }

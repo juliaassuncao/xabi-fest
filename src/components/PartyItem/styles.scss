@@ -24,10 +24,10 @@
   &--taylor .party-item__motion::after,
   &--meme .party-item__motion::after {
     position: absolute;
-    top: -5px;
+    top: calc(-5 * var(--sticker-unit, 1px));
     left: 30%;
     width: 42%;
-    height: 15px;
+    height: calc(15 * var(--sticker-unit, 1px));
     background: repeating-linear-gradient(
       90deg,
       #9b6dffb8 0 5px,
@@ -37,7 +37,7 @@
     content: "";
   }
   &--meme .party-item__motion {
-    padding: 5px;
+    padding: calc(5 * var(--sticker-unit, 1px));
     background: var(--party-paper);
     box-shadow: 3px 4px 0 #11111145;
   }
@@ -108,71 +108,36 @@
   }
 }
 
-// Recompose mobile clusters from the space left by the full-sized message.
+// Coordinates captured from the approved 384 x 741 CSS-pixel composition.
+// Change these design coordinates together; the hook adapts the two clusters.
 @media (max-width: 959px) {
   .party-item {
-    &--taylor {
-      --sticker-width: min(42vw, calc(var(--collage-top, 110px) * 1.1));
-      top: -10px;
-      left: 2px;
-    }
-    &--balloons {
-      --sticker-width: min(29vw, calc(var(--collage-top, 110px) * 0.9));
-      top: 35px;
-      left: min(270px, calc(100% - var(--sticker-width) - 4px));
-    }
-    &--meme {
-      --sticker-width: min(28vw, calc(var(--collage-base, 150px) * 0.90));
+    --sticker-unit: var(--collage-top-unit, 1px);
+    --sticker-width: calc(var(--design-width) * var(--sticker-unit));
+    top: calc(var(--collage-top-y, 0px) + var(--design-y) * var(--sticker-unit));
+    left: calc(var(--collage-top-x, 0px) + var(--design-x) * var(--sticker-unit));
+    right: auto;
+    bottom: auto;
 
+    &--taylor { --design-width: 151.008; --design-x: 2; --design-y: -10; }
+    &--balloons { --design-width: 111.36; --design-x: 248.64; --design-y: 35; }
+    &--team { --design-width: 107.52; --design-x: 226.48; --design-y: 15; }
+    &--thirteen { --design-width: 115.2; --design-x: 138.6528; --design-y: 33.6; }
+
+    &--meme, &--grill, &--tart, &--drink, &--car {
+      --sticker-unit: var(--collage-base-unit, 1px);
       top: auto;
-      right: auto;
-
-      left: 10px;
-      bottom: max(4px, calc(var(--collage-base, 150px) * 0.02));
-
-      --sticker-layer: 21;
+      left: calc(var(--collage-base-x, 0px) + var(--design-x) * var(--sticker-unit));
+      bottom: calc(var(--collage-base-bottom, 0px) + var(--design-bottom) * var(--sticker-unit));
     }
-    &--team {
-      --sticker-width: min(28vw, calc(var(--collage-top, 110px) * 0.8));
-      top: 15px;
-      right: 30px;
-    }
-    &--thirteen {
-      --sticker-width: min(30vw, calc(var(--collage-top, 110px) * 0.9));
-      top: calc(var(--collage-top, 110px) - var(--sticker-width) * 0.9);
-      left: min(80vw, calc(var(--collage-top, 110px) * 1.01));
-    }
-    &--grill {
-      --sticker-width: min(39vw, calc(var(--collage-base, 150px) * 0.96));
-      left: 110px;
-      bottom: max(7px, calc(var(--collage-base, 150px) * 0.20));
-    }
-    &--tart {
-      --sticker-width: min(36vw, calc(var(--collage-base, 150px) * 0.88));
-      left: min(66%, calc(100% - var(--sticker-width) - 8px));
-      bottom: max(6px, calc(var(--collage-base, 150px) * 0.4));
-    }
+    &--meme { --design-width: 107.52; --design-x: 10; --design-bottom: 4; --sticker-layer: 21; }
+    &--grill { --design-width: 149.76; --design-x: 110; --design-bottom: 34.944; }
+    &--tart { --design-width: 138.24; --design-x: 217.76; --design-bottom: 69.888; }
     &--drink {
-      --sticker-width: min(30vw, calc(var(--collage-base, 150px) * 0.75));
-      top: auto;
-      right: auto;
-      bottom: calc(var(--collage-base, 250px) * 0.8);
+      --design-width: 115.2; --design-x: 6; --design-bottom: 139.776;
+      left: calc(var(--collage-base-x, 0px) + var(--design-x) * var(--sticker-unit) + var(--drink-safe-x, 0px));
+      bottom: calc(var(--collage-base-bottom, 0px) + var(--design-bottom) * var(--sticker-unit) - var(--drink-safe-y, 0px));
     }
-    &--car {
-      --sticker-width: min(55vw, calc(var(--collage-base, 150px) * 1.75));
-      right: -15px;
-      bottom: -5px;
-    }
-  }
-}
-
-@media (max-width: 959px) and (max-height: 700px) {
-  .party-item--team {
-    right: 21%;
-  }
-  .party-item--drink {
-    left: auto;
-    right: 2px;
-    bottom: calc(var(--collage-base, 150px) * 0.45);
+    &--car { --design-width: 211.2; --design-x: 167.8; --design-bottom: -5; }
   }
 }

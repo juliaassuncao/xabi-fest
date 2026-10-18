@@ -1,4 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
+import { MOBILE_REFERENCE } from '../constants/composition'
+import { fitMobileComposition } from '../utils/mobileComposition'
 
 /** Fit desktop as a whole; allocate mobile space without scaling its text. */
 export function useCardFit() {
@@ -20,16 +22,18 @@ export function useCardFit() {
     const fit = () => {
       // Older Safari uses a large vh even while its address bar is visible.
       if (!dynamicViewport) {
-        site.style.height = `${window.visualViewport?.height ?? window.innerHeight}px`
+        const visual = window.visualViewport
+        const height = visual && Math.abs(visual.scale - 1) < .01 ? visual.height : window.innerHeight
+        site.style.height = `${height}px`
       }
       if (!desktop.matches) {
+        const height = parseFloat(getComputedStyle(site).height)
+        const density = Math.min(1, Math.max(0, (height - 640) / (MOBILE_REFERENCE.viewport.height - 640)))
+        site.style.setProperty('--message-density', String(density))
         viewport.style.removeProperty('--card-scale')
         viewport.style.removeProperty('--card-height')
         if (scene && message) {
-          // Leave room for the paper's shadow; only decoration uses the remainder.
-          const free = Math.max(0, scene.clientHeight - message.offsetHeight - 10)
-          scene.style.setProperty('--collage-top', `${free * 0.44}px`)
-          scene.style.setProperty('--collage-base', `${free * 0.56}px`)
+          fitMobileComposition(scene, message)
         }
         return
       }
@@ -51,6 +55,9 @@ export function useCardFit() {
     observer.observe(credit)
     if (scene) observer.observe(scene)
     if (message) observer.observe(message)
+    const images = [...card.querySelectorAll('img')]
+    images.forEach(image => image.addEventListener('load', fit))
+    document.fonts.addEventListener('loadingdone', fit)
     window.addEventListener('resize', fit)
     window.visualViewport?.addEventListener('resize', fit)
     desktop.addEventListener('change', fit)
@@ -60,6 +67,8 @@ export function useCardFit() {
       if (!dynamicViewport) site.style.removeProperty('height')
       desktop.removeEventListener('change', fit)
       observer.disconnect()
+      images.forEach(image => image.removeEventListener('load', fit))
+      document.fonts.removeEventListener('loadingdone', fit)
       window.removeEventListener('resize', fit)
       window.visualViewport?.removeEventListener('resize', fit)
     }

@@ -31,13 +31,17 @@ npm run preview
 
 O arquivo **`src/constants/party.ts`** centraliza a mensagem, a tag, os status da animação e os caminhos dos assets ativos. Altere `PARTY_CONTENT.finale` para personalizar o recado e a assinatura.
 
-Os tamanhos, posições, rotações e camadas dos adesivos ficam em `src/components/PartyItem/styles.scss`: as regras iniciais definem o desktop e a media query `max-width: 959px` define o mobile. As etapas e os tempos da animação ficam em `src/components/PartyScene/index.tsx`.
+Os tamanhos, posições, rotações e camadas dos adesivos ficam em `src/components/PartyItem/styles.scss`. As regras iniciais definem o desktop. No mobile, `--design-width`, `--design-x`, `--design-y` e `--design-bottom` guardam as coordenadas aprovadas; os agrupamentos superior e inferior adaptam essas coordenadas juntos. As etapas e os tempos da animação ficam em `src/components/PartyScene/index.tsx`.
 
 Para trocar uma imagem, coloque o arquivo em `public/assets/final/` e atualize seu caminho na lista `PARTY_ITEMS`. O banner e as imagens decorativas ficam em `PARTY_DECOR`.
 
 O banner e o fundo são posicionados em `src/components/PartyScene/styles.scss`. A tag e o cartão de mensagem são estilizados em `src/components/BirthdayMessage/styles.scss`; no mobile, a tag usa margens automáticas para se centralizar sem transformações próprias.
 
-`src/hooks/useCardFit.ts` ajusta o cartão à viewport: escala o conjunto no desktop e distribui o espaço restante entre os assets no mobile, preservando o tamanho do texto. Os recortes e animações ficam contidos no cenário. As imagens são locais; as fontes são carregadas pelo Google Fonts.
+`src/hooks/useCardFit.ts` ajusta o cartão à viewport: mantém o ajuste existente no desktop e mede a área útil entre header e footer no mobile. O texto não recebe `transform: scale()`. Fontes e espaçamentos compactam gradualmente entre 640 e 741 CSS px de altura.
+
+A referência confirmada do Galaxy S24 Ultra está em `src/constants/composition.ts`: `innerWidth: 384`, `innerHeight: 741`, `visualViewport.height: 741.5999755859375`, zoom 1 e DPR 3,75. As coordenadas usam pixels CSS, sem multiplicação pelo DPR. `src/utils/mobileComposition.ts` calcula as unidades dos agrupamentos a partir da largura do cartão e da altura restante; em tablets, a colagem continua ancorada ao cartão central.
+
+`src/utils/protectMessage.ts` verifica as linhas de texto e o contorno transparente da caipirinha. Quando necessário, corrige apenas seu afastamento do texto, preservando a camada superior. Imagens carregadas, fontes e mudanças de viewport atualizam as medidas sem reiniciar o GSAP. Os recortes e animações ficam contidos no cenário. As imagens são locais; as fontes são carregadas pelo Google Fonts.
 
 ## Publicar via GitHub e Vercel
 

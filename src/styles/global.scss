@@ -166,11 +166,21 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
     &__footer-mark { display: none; }
   }
   .intro-panel {
-    padding: 14px;
-    &__card { padding: 25px 19px; }
-    &__sticker { font-size: 2.5rem; }
-    h1 { font-size: clamp(2rem, 8vw, 2.7rem); }
-    p { font-size: .9rem; }
+    padding: calc(12px + 2px * var(--message-density, 1));
+    &__card { padding: calc(18px + 7px * var(--message-density, 1)) calc(14px + 5px * var(--message-density, 1)); }
+    &__sticker { font-size: calc(2rem + .5rem * var(--message-density, 1)); }
+    h1 {
+      --intro-title: clamp(2rem, 8vw, 2.7rem);
+      font-size: calc(1.8rem + (var(--intro-title) - 1.8rem) * var(--message-density, 1));
+      margin-top: calc(8px + 2px * var(--message-density, 1));
+      margin-bottom: calc(8px + 5px * var(--message-density, 1));
+    }
+    p {
+      font-size: calc(.875rem + .025rem * var(--message-density, 1));
+      line-height: calc(1.35 + .15 * var(--message-density, 1));
+      margin-bottom: calc(14px + 8px * var(--message-density, 1));
+    }
+    small { margin-top: calc(10px + 6px * var(--message-density, 1)); }
   }
   .replay-button { font-size: .73rem; padding: 6px 9px; }
 }
@@ -203,9 +213,12 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
   .replay-button { min-height: 34px; }
 }
 
-@media (max-width: 959px) and (max-height: 700px) {
+@media (max-width: 959px) and (max-height: 640px) {
   .site__credit { display: none; }
   .birthday-card__note { display: none; }
+}
+
+@media (min-width: 621px) and (max-width: 959px) and (max-height: 700px) {
   .intro-panel {
     padding: 12px;
     &__card { padding: 18px 14px; }
