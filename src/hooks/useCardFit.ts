@@ -13,9 +13,15 @@ export function useCardFit() {
     if (!viewport || !card || !credit) return
 
     const desktop = window.matchMedia('(min-width: 960px)')
+    const site = viewport.parentElement!
+    const dynamicViewport = CSS.supports('height', '100dvh')
     const scene = card.querySelector<HTMLElement>('.party-scene')
     const message = card.querySelector<HTMLElement>('.birthday-message')
     const fit = () => {
+      // Older Safari uses a large vh even while its address bar is visible.
+      if (!dynamicViewport) {
+        site.style.height = `${window.visualViewport?.height ?? window.innerHeight}px`
+      }
       if (!desktop.matches) {
         viewport.style.removeProperty('--card-scale')
         viewport.style.removeProperty('--card-height')
@@ -27,7 +33,6 @@ export function useCardFit() {
         }
         return
       }
-      const site = viewport.parentElement!
       const siteStyle = getComputedStyle(site)
       const creditStyle = getComputedStyle(credit)
       const shadowSpace = 24
@@ -52,6 +57,7 @@ export function useCardFit() {
     fit()
 
     return () => {
+      if (!dynamicViewport) site.style.removeProperty('height')
       desktop.removeEventListener('change', fit)
       observer.disconnect()
       window.removeEventListener('resize', fit)

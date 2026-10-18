@@ -47,7 +47,6 @@ export function PartyScene({
         y: 26,
         rotation: -10,
       });
-      gsap.set(".scene-graphics", { autoAlpha: 0 });
       gsap.set(".scene-banner", { autoAlpha: 0, y: -30, scale: 0.85 });
       gsap.set(".birthday-message", {
         autoAlpha: 0,
@@ -59,7 +58,7 @@ export function PartyScene({
 
       if (reduceMotion) {
         gsap.set(
-          "[data-party-item], .scene-banner, .birthday-message, .scene-graphics",
+          "[data-party-item], .scene-banner, .birthday-message",
           { autoAlpha: 1, scale: 1, rotation: 0, y: 0 },
         );
         onProgress(PARTY_CONTENT.status.finished);
@@ -78,7 +77,6 @@ export function PartyScene({
           duration: 0.75,
           ease: "back.out(1.7)",
         })
-        .to(".scene-graphics", { autoAlpha: 1, duration: 0.35 }, "<")
         .to(
           pop("balloons"),
           {
@@ -230,7 +228,7 @@ export function PartyScene({
     ));
 
   return (
-    <div className="party-scene" ref={sceneRef}>
+    <div className={`party-scene${playCount > 0 ? ' party-scene--started' : ''}`} ref={sceneRef}>
       <div
         className="party-scene__paper party-scene__paper--pink"
         aria-hidden="true"
@@ -239,7 +237,7 @@ export function PartyScene({
         className="party-scene__paper party-scene__paper--blue"
         aria-hidden="true"
       />
-      <div className="party-scene__graphics scene-graphics" aria-hidden="true">
+      <div className="party-scene__graphics" aria-hidden="true">
         <img
           className="party-scene__doodles"
           src={PARTY_DECOR.doodles}

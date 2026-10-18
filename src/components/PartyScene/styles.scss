@@ -1,4 +1,5 @@
 .party-scene {
+  --decor-reveal: 0;
   position: relative;
   display: block;
   padding: 140px 275px 265px;
@@ -8,9 +9,12 @@
     radial-gradient(#3b5bff20 0.7px, transparent 1px) 0 0 / 6px 6px,
     var(--party-paper);
 
+  // Reveal once; replay only animates foreground items, not this static layer.
+  &--started { --decor-reveal: 1; }
+
   &__paper {
     position: absolute;
-    z-index: -2;
+    z-index: 0;
     pointer-events: none;
     &--pink {
       inset: -5% 48% 12% -22%;
@@ -28,8 +32,7 @@
   &__graphics {
     position: absolute;
     inset: 0;
-    z-index: -1;
-    visibility: hidden;
+    z-index: 1;
     pointer-events: none;
   }
   &__doodles {
@@ -38,14 +41,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.075;
+    opacity: calc(var(--decor-reveal) * 0.075);
   }
   &__decal {
     position: absolute;
     bottom: 155px;
     left: 32%;
     width: 155px;
-    opacity: 0.28;
+    opacity: calc(var(--decor-reveal) * var(--decal-opacity, 0.28));
     transform: rotate(18deg);
   }
   &__checker {
@@ -54,7 +57,7 @@
     right: -20px;
     width: 66%;
     height: 195px;
-    opacity: 0.36;
+    opacity: calc(var(--decor-reveal) * 0.36);
     background: conic-gradient(
         var(--party-blue) 25%,
         transparent 0 50%,
@@ -63,6 +66,9 @@
       )
       0 0 / 30px 30px;
     transform: rotate(-10deg);
+  }
+  &__doodles, &__decal, &__checker {
+    transition: opacity 0.35s ease-out;
   }
   // Each group shares the stage; only the paper reserves flow space for its text.
   &__top,
@@ -139,7 +145,7 @@
       bottom: 75px;
       left: 31%;
       width: 225px;
-      opacity: 0.25;
+      --decal-opacity: 0.25;
     }
     &__checker {
       height: 260px;
@@ -165,7 +171,7 @@
     &__decal {
       width: 120px;
       bottom: 15px;
-      opacity: 0.2;
+      --decal-opacity: 0.2;
     }
     &__checker {
       height: min(150px, var(--collage-base, 150px));
@@ -175,8 +181,7 @@
 
 @media (max-width: 959px) and (max-height: 700px) {
   .party-scene {
-    &__decal,
-    &__doodles {
+    &__decal {
       display: none;
     }
     &__banner {

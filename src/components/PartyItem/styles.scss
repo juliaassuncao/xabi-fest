@@ -92,7 +92,8 @@
   &--drink {
     --sticker-width: 190px;
     --sticker-tilt: -8deg;
-    --sticker-layer: 40;
+    // Shared scene context: above stickers, message borders (30) and confetti (40).
+    --sticker-layer: 50;
     top: 340px;
     left: 6px;
     bottom: 58px;
@@ -118,7 +119,7 @@
     &--balloons {
       --sticker-width: min(29vw, calc(var(--collage-top, 110px) * 0.9));
       top: 35px;
-      left: 270px;
+      left: min(270px, calc(100% - var(--sticker-width) - 4px));
     }
     &--meme {
       --sticker-width: min(28vw, calc(var(--collage-base, 150px) * 0.90));
@@ -129,7 +130,7 @@
       left: 10px;
       bottom: max(4px, calc(var(--collage-base, 150px) * 0.02));
 
-      --sticker-layer: 41;
+      --sticker-layer: 21;
     }
     &--team {
       --sticker-width: min(28vw, calc(var(--collage-top, 110px) * 0.8));
@@ -148,13 +149,14 @@
     }
     &--tart {
       --sticker-width: min(36vw, calc(var(--collage-base, 150px) * 0.88));
-      left: 66%;
+      left: min(66%, calc(100% - var(--sticker-width) - 8px));
       bottom: max(6px, calc(var(--collage-base, 150px) * 0.4));
     }
     &--drink {
       --sticker-width: min(30vw, calc(var(--collage-base, 150px) * 0.75));
-      right: 0;
-      bottom: calc(var(--collage-base, 250px) * 0.5);
+      top: auto;
+      right: auto;
+      bottom: calc(var(--collage-base, 250px) * 0.8);
     }
     &--car {
       --sticker-width: min(55vw, calc(var(--collage-base, 150px) * 1.75));
@@ -167,5 +169,10 @@
 @media (max-width: 959px) and (max-height: 700px) {
   .party-item--team {
     right: 21%;
+  }
+  .party-item--drink {
+    left: auto;
+    right: 2px;
+    bottom: calc(var(--collage-base, 150px) * 0.45);
   }
 }

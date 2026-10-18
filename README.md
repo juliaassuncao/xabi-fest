@@ -62,11 +62,13 @@ O banner e o fundo são posicionados em `src/components/PartyScene/styles.scss`.
 - [ ] Conferir a mensagem e a assinatura no `party.ts`.
 - [ ] Abrir no celular e verificar se o botão inicial aparece inteiro.
 - [ ] Conferir a entrada do carro, confetes e o botão "rever a festinha".
-- [ ] Testar com o som desligado (o projeto é intencionalmente silencioso).
+- [ ] Testar a música, o botão de mute e o replay com som ativo e silenciado.
 - [ ] Confirmar que o link público da Vercel está funcionando.
 
 ## Acessibilidade e comportamento
 
 - A experiência começa após clicar no botão; não existe autoplay inicial.
+- A trilha local `public/assets/audio/celebration.mp3` começa no clique de preparar a festa e toca em loop. O botão de volume aparece após esse clique e alterna `audio.muted`, mantendo a música avançando. O replay sempre volta ao início da música e preserva a preferência de mute.
+- `src/hooks/usePartyAudio.ts` mantém um único elemento de áudio durante todas as fases. A chamada a `play()` ocorre diretamente no clique, sem aguardar `canplaythrough`; eventos de mídia sincronizam o botão e falhas permitem uma nova tentativa manual. O volume inicial é 50% quando o navegador permite; no iPhone vale o controle do dispositivo.
 - Se o dispositivo usar **reduzir movimento**, a festa aparece sem a sequência de deslocamentos.
 - A página não exige cookies, login, coleta de dados ou APIs externas.
