@@ -1,4 +1,3 @@
-/** Central de textos e elementos para personalizar sem mexer nos componentes. */
 export const PARTY_CONTENT = {
   eyebrow: "UMA FESTINHA ESPECIALMENTE PRA VOCÊ",
   festival: "XABI FEST",
@@ -19,7 +18,7 @@ export const PARTY_CONTENT = {
     finished: "festa oficialmente inaugurada! 🎊",
   },
   finale: {
-    miniTitle: "",
+    tag: "GABI’S BIRTHDAY PARTY",
     title: "PARABÉNS, GABI! ★",
     text: "Não sei organizar um churrasco, mas uma festa inteirinha dentro de um site? Aí já é comigo!",
     wish: "Espero que seu dia tenha sido tão divertido quanto essa pequena bagunça e que seu novo ciclo seja cheio de coisas boas, momentos inesquecíveis e muito amor.",
@@ -32,20 +31,13 @@ export const PARTY_CONTENT = {
 
 export type PartyItemId =
   | "balloons"
-  | "pop"
   | "team"
   | "grill"
-  | "cake"
   | "drink"
   | "tart"
   | "car"
   | "taylor"
-  | "taylorEncore"
   | "meme"
-  | "glam"
-  | "fairies"
-  | "racecar"
-  | "popStar"
   | "thirteen";
 
 export type PartyRegion = "top" | "left" | "right" | "base";
@@ -84,48 +76,12 @@ export const PARTY_ITEMS: PartyItemData[] = [
     src: `${ASSETS}/00-user-provided/taylor-cutout-1.webp`,
     alt: "Recorte de Taylor Swift escolhido pela Xu",
   },
-  // {
-  //   id: "pop",
-  //   region: "left",
-  //   src: `${ASSETS}/02-decor-elements/disco-party-collage.png`,
-  //   alt: "Sticker de globo de discoteca, música e fandom",
-  // },
-  // {
-  //   id: "fairies",
-  //   region: "right",
-  //   src: `${ASSETS}/03-fandom-elements/winx-inspired-fairies.png`,
-  //   alt: "Sticker de fadas inspirado na estética Winx",
-  // },
-  // {
-  //   id: "taylorEncore",
-  //   region: "left",
-  //   src: `${ASSETS}/00-user-provided/taylor-cutout-2.webp`,
-  //   alt: "Segundo recorte de Taylor Swift",
-  // },
-  // {
-  //   id: "racecar",
-  //   region: "base",
-  //   src: `${ASSETS}/03-fandom-elements/cars-inspired-racecar.png`,
-  //   alt: "Pequeno sticker de corrida inspirado em Cars",
-  // },
   {
     id: "meme",
     region: "right",
     src: `${ASSETS}/00-user-provided/swifties-com-lula.webp`,
     alt: "Meme Swifties com Lula",
   },
-  // {
-  //   id: "glam",
-  //   region: "left",
-  //   src: `${ASSETS}/03-fandom-elements/white-chicks-inspired-glam-duo.png`,
-  //   alt: "Dupla glam inspirada em White Chicks",
-  // },
-  // {
-  //   id: "popStar",
-  //   region: "right",
-  //   src: `${ASSETS}/03-fandom-elements/taylor-inspired-pop-star.png`,
-  //   alt: "Sticker de estrela pop inspirado em Taylor",
-  // },
   {
     id: "thirteen",
     region: "left",
@@ -144,12 +100,6 @@ export const PARTY_ITEMS: PartyItemData[] = [
     src: `${ASSETS}/00-user-provided/strawberry-tart-user.webp`,
     alt: "A torta de morango original escolhida pela Xu",
   },
-  // {
-  //   id: "cake",
-  //   region: "base",
-  //   src: `${ASSETS}/01-party-items/birthday-cake-y2k.png`,
-  //   alt: "Bolo de aniversário com velas e morangos",
-  // },
   {
     id: "drink",
     region: "base",

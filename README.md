@@ -7,7 +7,7 @@ Um mini cartão de aniversário interativo: a festa vai sendo montada com as coi
 - Vite + React + TypeScript
 - GSAP (uma timeline para coordenar a animação)
 - SCSS
-- SVGs autorais, leves e com fundo transparente em `public/assets/`
+- Assets PNG e WebP em `public/assets/final/`
 
 ## Rodar no computador
 
@@ -29,13 +29,15 @@ npm run preview
 
 ## Alterar a mensagem e os elementos
 
-O arquivo **`src/constants/party.ts`** centraliza os textos, as referências da festa e o caminho de cada SVG. Basta alterar `PARTY_CONTENT.finale` para personalizar o recado, inclusive a assinatura `com carinho, Xu`.
+O arquivo **`src/constants/party.ts`** centraliza a mensagem, a tag, os status da animação e os caminhos dos assets ativos. Altere `PARTY_CONTENT.finale` para personalizar o recado e a assinatura.
 
-As posições dos adesivos são definidas em `src/components/PartyItem/styles.scss`. As etapas e os tempos da animação estão em `src/components/PartyScene/index.tsx`.
+Os tamanhos, posições, rotações e camadas dos adesivos ficam em `src/components/PartyItem/styles.scss`: as regras iniciais definem o desktop e a media query `max-width: 959px` define o mobile. As etapas e os tempos da animação ficam em `src/components/PartyScene/index.tsx`.
 
-Para trocar uma ilustração, substitua o SVG correspondente na pasta `public/assets/` mantendo o nome, ou atualize o caminho na lista `PARTY_ITEMS`.
+Para trocar uma imagem, coloque o arquivo em `public/assets/final/` e atualize seu caminho na lista `PARTY_ITEMS`. O banner e as imagens decorativas ficam em `PARTY_DECOR`.
 
-> O carrinho 95, a bandeirinha SPFC e a referência à Taylor Swift são **ilustrações estilizadas de fã**, não imagens oficiais. Nenhuma imagem remota é exigida para que a festa funcione.
+O banner e o fundo são posicionados em `src/components/PartyScene/styles.scss`. A tag e o cartão de mensagem são estilizados em `src/components/BirthdayMessage/styles.scss`; no mobile, a tag usa margens automáticas para se centralizar sem transformações próprias.
+
+`src/hooks/useCardFit.ts` ajusta o cartão à viewport: escala o conjunto no desktop e distribui o espaço restante entre os assets no mobile, preservando o tamanho do texto. Os recortes e animações ficam contidos no cenário. As imagens são locais; as fontes são carregadas pelo Google Fonts.
 
 ## Publicar via GitHub e Vercel
 

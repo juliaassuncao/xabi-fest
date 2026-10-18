@@ -42,289 +42,68 @@
     box-shadow: 3px 4px 0 #11111145;
   }
 
-  // Phone: a pop-photo cluster above the paper, a layered party cluster below.
   &--balloons {
-    --sticker-width: 110px;
+    --sticker-width: 160px;
     --sticker-tilt: -12deg;
     --sticker-layer: 2;
-    top: 7px;
-    left: 2px;
+    top: 3px;
+    left: 18px;
   }
   &--taylor {
-    --sticker-width: clamp(130px, 39vw, 172px);
+    --sticker-width: 236px;
     --sticker-tilt: -9deg;
-    top: 58px;
-    left: 8px;
-  }
-  &--taylorEncore {
-    --sticker-width: 66px;
-    --sticker-tilt: 12deg;
-    --sticker-layer: 6;
-    top: 87px;
-    left: 53%;
-  }
-  &--pop {
-    --sticker-width: 62px;
-    --sticker-tilt: -14deg;
-    --sticker-layer: 4;
-    top: 139px;
-    left: 50%;
-  }
-  &--glam {
-    --sticker-width: 108px;
-    --sticker-tilt: -11deg;
-    --sticker-layer: 10;
-    bottom: 134px;
-    left: 7px;
+    top: 72px;
+    left: 18px;
   }
   &--thirteen {
-    --sticker-width: 76px;
+    --sticker-width: 108px;
     --sticker-tilt: 0;
     --sticker-layer: 15;
-    top: 136px;
-    left: 102px;
+    top: 231px;
+    left: 190px;
   }
   &--meme {
-    --sticker-width: 108px;
+    --sticker-width: 168px;
     --sticker-tilt: 8deg;
-    top: 64px;
-    right: 13px;
+    top: 117px;
+    right: 74px;
   }
   &--team {
-    --sticker-width: 83px;
+    --sticker-width: 124px;
     --sticker-tilt: 13deg;
     --sticker-layer: 12;
-    top: 16px;
-    right: 1px;
-  }
-  &--fairies {
-    --sticker-width: 110px;
-    --sticker-tilt: -13deg;
-    --sticker-layer: 13;
-    bottom: 134px;
-    right: -1px;
-  }
-  &--popStar {
-    --sticker-width: 86px;
-    --sticker-tilt: 8deg;
-    --sticker-layer: 7;
-    bottom: 212px;
-    right: 70px;
+    top: 70px;
+    right: 12px;
   }
   &--grill {
-    --sticker-width: 150px;
+    --sticker-width: 235px;
     --sticker-tilt: -4deg;
     --sticker-layer: 9;
-    bottom: 18px;
-    left: 0;
+    bottom: 34px;
+    left: 12px;
   }
   &--tart {
-    --sticker-width: 134px;
+    --sticker-width: 205px;
     --sticker-tilt: 6deg;
     --sticker-layer: 14;
-    bottom: 23px;
-    left: 82px;
-  }
-  &--cake {
-    --sticker-width: 132px;
-    --sticker-tilt: -7deg;
-    --sticker-layer: 10;
-    bottom: 95px;
-    left: 29%;
+    bottom: 10px;
+    left: 188px;
   }
   &--drink {
-    --sticker-width: 116px;
+    --sticker-width: 190px;
     --sticker-tilt: -8deg;
     --sticker-layer: 40;
     top: 340px;
     left: 6px;
+    bottom: 58px;
+    right: 136px;
   }
   &--car {
-    --sticker-width: 178px;
+    --sticker-width: 276px;
     --sticker-tilt: -4deg;
     --sticker-layer: 18;
     bottom: 10px;
-    right: -1px;
-  }
-  &--racecar {
-    --sticker-width: 60px;
-    --sticker-tilt: 13deg;
-    --sticker-layer: 5;
-    bottom: 12px;
-    left: 45%;
-  }
-}
-
-@media (min-width: 520px) and (max-width: 959px) {
-  .party-item {
-    &--taylor {
-      --sticker-width: 215px;
-      top: 52px;
-      left: 36px;
-    }
-    &--balloons {
-      --sticker-width: 150px;
-      left: 2px;
-    }
-    &--thirteen {
-      --sticker-width: 98px;
-      left: 188px;
-      top: 170px;
-    }
-    &--meme {
-      --sticker-width: 145px;
-      right: 60px;
-      top: 60px;
-    }
-    &--team {
-      --sticker-width: 110px;
-      right: 13px;
-    }
-    &--glam {
-      --sticker-width: 154px;
-      bottom: 126px;
-      left: 12px;
-    }
-    &--fairies {
-      --sticker-width: 142px;
-      right: 35px;
-      bottom: 140px;
-    }
-    &--popStar {
-      --sticker-width: 100px;
-      right: 145px;
-      bottom: 165px;
-    }
-    &--pop {
-      --sticker-width: 90px;
-      left: 155px;
-      top: auto;
-      bottom: 145px;
-    }
-    &--taylorEncore {
-      --sticker-width: 105px;
-      left: 14px;
-      top: auto;
-      bottom: 220px;
-    }
-    &--grill {
-      --sticker-width: 205px;
-      left: 14px;
-    }
-    &--tart {
-      --sticker-width: 188px;
-      left: 155px;
-      bottom: 15px;
-    }
-    &--cake {
-      --sticker-width: 180px;
-      left: 42%;
-      bottom: 78px;
-    }
-    &--drink {
-      --sticker-width: 170px;
-      right: 50px;
-      bottom: 35px;
-    }
-    &--car {
-      --sticker-width: 250px;
-      right: 0;
-      bottom: 6px;
-    }
-    &--racecar {
-      --sticker-width: 80px;
-    }
-  }
-}
-
-@media (min-width: 960px) {
-  .party-item {
-    &--balloons {
-      --sticker-width: 160px;
-      top: 3px;
-      left: 18px;
-    }
-    &--taylor {
-      --sticker-width: 236px;
-      top: 72px;
-      left: 18px;
-    }
-    &--taylorEncore {
-      --sticker-width: 112px;
-      --sticker-layer: 11;
-      top: 394px;
-      left: 14px;
-      bottom: auto;
-    }
-    &--pop {
-      --sticker-width: 108px;
-      top: 18px;
-      left: 186px;
-      bottom: auto;
-    }
-    &--glam {
-      --sticker-width: 168px;
-      top: 305px;
-      left: 102px;
-      bottom: auto;
-    }
-    &--thirteen {
-      --sticker-width: 108px;
-      top: 231px;
-      left: 190px;
-    }
-    &--meme {
-      --sticker-width: 168px;
-      top: 117px;
-      right: 74px;
-    }
-    &--team {
-      --sticker-width: 124px;
-      top: 70px;
-      right: 12px;
-    }
-    &--fairies {
-      --sticker-width: 168px;
-      top: 330px;
-      right: 15px;
-      bottom: auto;
-    }
-    &--popStar {
-      --sticker-width: 125px;
-      top: 311px;
-      right: 146px;
-      bottom: auto;
-    }
-    &--grill {
-      --sticker-width: 235px;
-      bottom: 34px;
-      left: 12px;
-    }
-    &--tart {
-      --sticker-width: 205px;
-      bottom: 10px;
-      left: 188px;
-    }
-    &--cake {
-      --sticker-width: 222px;
-      bottom: 50px;
-      left: 43%;
-    }
-    &--drink {
-      --sticker-width: 190px;
-      bottom: 58px;
-      right: 136px;
-    }
-    &--car {
-      --sticker-width: 276px;
-      bottom: 10px;
-      right: 12px;
-    }
-    &--racecar {
-      --sticker-width: 85px;
-      bottom: 8px;
-      left: 58%;
-    }
+    right: 12px;
   }
 }
 
@@ -372,11 +151,6 @@
       left: 66%;
       bottom: max(6px, calc(var(--collage-base, 150px) * 0.4));
     }
-    &--cake {
-      --sticker-width: min(34vw, calc(var(--collage-base, 150px) * 0.88));
-      left: 39%;
-      bottom: calc(var(--collage-base, 150px) * 0.16);
-    }
     &--drink {
       --sticker-width: min(30vw, calc(var(--collage-base, 150px) * 0.75));
       right: 0;
@@ -387,30 +161,10 @@
       right: -15px;
       bottom: -5px;
     }
-    &--glam {
-      --sticker-width: min(25vw, 95px);
-      left: 5px;
-      bottom: calc(var(--collage-base, 150px) * 0.56);
-    }
-    &--fairies {
-      --sticker-width: min(25vw, 100px);
-      right: 0;
-      bottom: calc(var(--collage-base, 150px) * 0.56);
-    }
-    &--taylorEncore,
-    &--pop,
-    &--popStar,
-    &--racecar {
-      display: none;
-    }
   }
 }
 
 @media (max-width: 959px) and (max-height: 700px) {
-  .party-item--glam,
-  .party-item--fairies {
-    display: none;
-  }
   .party-item--team {
     right: 21%;
   }

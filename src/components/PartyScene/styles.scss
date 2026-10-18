@@ -1,7 +1,7 @@
 .party-scene {
   position: relative;
   display: block;
-  padding: clamp(205px, 54vw, 250px) 18px 275px;
+  padding: 140px 275px 265px;
   overflow: hidden;
   isolation: isolate;
   background:
@@ -74,9 +74,9 @@
   }
   &__banner {
     position: absolute;
-    top: 10px;
+    top: 6px;
     left: 50%;
-    width: 64%;
+    width: 400px;
     max-width: 400px;
     z-index: 5;
     transform: translateX(-50%);
@@ -85,9 +85,6 @@
       display: block;
       width: 100%;
       height: auto;
-    }
-    span {
-      display: none;
     }
   }
   &__message-layer {
@@ -136,38 +133,8 @@
   }
 }
 
-@media (min-width: 520px) and (max-width: 959px) {
-  .party-scene {
-    padding: 280px 45px 310px;
-    &__banner {
-      top: 0;
-      width: 43%;
-    }
-    &__decal {
-      width: 30px;
-      bottom: 150px;
-    }
-  }
-}
-
 @media (min-width: 960px) {
   .party-scene {
-    padding: 140px 275px 265px;
-    &__banner {
-      top: 6px;
-      width: 400px;
-    }
-    &__banner span {
-      display: inline-block;
-      margin-top: 2px;
-      padding: 3px 9px;
-      background: var(--party-yellow);
-      color: var(--party-navy);
-      font-family: "Fredoka", sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      box-shadow: 2px 2px 0 var(--party-pink);
-    }
     &__decal {
       bottom: 75px;
       left: 31%;

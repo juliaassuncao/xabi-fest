@@ -11,8 +11,6 @@ import {
 } from "../../constants/party";
 import "./styles.scss";
 
-export type PartyPhase = "idle" | "playing" | "done";
-
 type PartySceneProps = {
   playCount: number;
   onComplete: () => void;
@@ -69,9 +67,7 @@ export function PartyScene({
         return;
       }
 
-      const pop = (id: PartyItemId) => ({
-        targets: `[data-party-item="${id}"]`,
-      });
+      const pop = (id: PartyItemId) => `[data-party-item="${id}"]`;
 
       const tl = gsap.timeline({ onComplete });
       tl.call(() => onProgress(PARTY_CONTENT.status.preparing))
@@ -84,7 +80,7 @@ export function PartyScene({
         })
         .to(".scene-graphics", { autoAlpha: 1, duration: 0.35 }, "<")
         .to(
-          pop("balloons").targets,
+          pop("balloons"),
           {
             autoAlpha: 1,
             y: 0,
@@ -96,7 +92,7 @@ export function PartyScene({
           "-=0.3",
         )
         .call(() => onProgress(PARTY_CONTENT.status.cake))
-        .to(pop("grill").targets, {
+        .to(pop("grill"), {
           autoAlpha: 1,
           x: 0,
           y: 0,
@@ -106,19 +102,7 @@ export function PartyScene({
           ease: "back.out(2)",
         })
         .to(
-          pop("cake").targets,
-          {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            rotation: 0,
-            duration: 0.8,
-            ease: "bounce.out",
-          },
-          "-=0.45",
-        )
-        .to(
-          pop("drink").targets,
+          pop("drink"),
           {
             autoAlpha: 1,
             y: 0,
@@ -127,10 +111,9 @@ export function PartyScene({
             duration: 0.6,
             ease: "back.out(2)",
           },
-          "-=0.35",
         )
         .to(
-          pop("tart").targets,
+          pop("tart"),
           {
             autoAlpha: 1,
             y: 0,
@@ -142,16 +125,8 @@ export function PartyScene({
           "-=0.25",
         )
         .call(() => onProgress(PARTY_CONTENT.status.fandom))
-        .to(pop("pop").targets, {
-          autoAlpha: 1,
-          y: 0,
-          scale: 1,
-          rotation: 0,
-          duration: 0.65,
-          ease: "back.out(2)",
-        })
         .to(
-          pop("team").targets,
+          pop("team"),
           {
             autoAlpha: 1,
             y: 0,
@@ -160,10 +135,11 @@ export function PartyScene({
             duration: 0.65,
             ease: "back.out(2)",
           },
-          "-=0.25",
+          // Preserve the pause before the team entrance after removing the unused tween.
+          "+=0.4",
         )
         .to(
-          '[data-party-item="taylor"], [data-party-item="taylorEncore"], [data-party-item="meme"]',
+          '[data-party-item="taylor"], [data-party-item="meme"]',
           {
             autoAlpha: 1,
             y: 0,
@@ -176,21 +152,20 @@ export function PartyScene({
           "-=0.25",
         )
         .to(
-          '[data-party-item="fairies"], [data-party-item="racecar"], [data-party-item="glam"], [data-party-item="popStar"], [data-party-item="thirteen"]',
+          '[data-party-item="thirteen"]',
           {
             autoAlpha: 1,
             y: 0,
             scale: 1,
             rotation: 0,
             duration: 0.45,
-            stagger: 0.1,
             ease: "back.out(1.7)",
           },
           "-=0.25",
         )
         .call(() => onProgress(PARTY_CONTENT.status.car))
         .fromTo(
-          pop("car").targets,
+          pop("car"),
           {
             autoAlpha: 1,
             x: root.clientWidth + 250,
@@ -201,13 +176,13 @@ export function PartyScene({
           { x: 0, duration: 1.25, ease: "power3.out" },
           "+=0.15",
         )
-        .to(pop("car").targets, {
+        .to(pop("car"), {
           x: -12,
           rotation: 0,
           duration: 0.12,
           ease: "power1.out",
         })
-        .to(pop("car").targets, {
+        .to(pop("car"), {
           x: 0,
           rotation: 0,
           duration: 0.22,
@@ -278,7 +253,6 @@ export function PartyScene({
         <div className="party-scene__banner">
           <div className="scene-banner">
             <img src={PARTY_DECOR.header} alt="" aria-hidden="true" />
-            <span>XABI’S BIRTHDAY BASH ★</span>
           </div>
         </div>
       </div>

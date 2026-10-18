@@ -1,8 +1,10 @@
 import { useCallback, useState } from 'react'
-import { PartyScene, type PartyPhase } from './components/PartyScene'
+import { PartyScene } from './components/PartyScene'
 import { PARTY_CONTENT } from './constants/party'
 import { useCardFit } from './hooks/useCardFit'
 import './styles/global.scss'
+
+type PartyPhase = 'idle' | 'playing' | 'done'
 
 function App() {
   const { viewportRef, cardRef, creditRef } = useCardFit()

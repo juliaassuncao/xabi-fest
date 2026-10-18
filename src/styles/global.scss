@@ -4,13 +4,8 @@
   --party-ink: #{$ink};
   --party-paper: #{$cream};
   --party-pink: #{$pink};
-  --party-hot-pink: #{$pink-deep};
   --party-blue: #{$royal};
-  --party-sky: #{$sky};
-  --party-orange: #{$orange};
   --party-yellow: #{$yellow};
-  --party-lilac: #{$lilac};
-  --party-lime: #{$lime};
   --party-navy: #{$navy};
   font-family: 'DM Sans', system-ui, sans-serif;
   color: $ink;
@@ -31,9 +26,10 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100svh;
-  padding: clamp(12px, 2.1vh, 28px) 15px;
-  overflow-x: clip;
+  height: 100dvh;
+  min-height: 0;
+  padding: 12px 15px;
+  overflow: clip;
   background:
     radial-gradient(circle at 12% 15%, #ffd93d 0 6px, transparent 7px),
     radial-gradient(circle at 83% 7%, #fffaf2 0 4px, transparent 5px),
@@ -44,16 +40,23 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
   &__ornament { position: absolute; color: #ffd93d; font-size: 8rem; line-height: 1; pointer-events: none; }
   &__ornament--one { top: 3%; left: 3%; transform: rotate(15deg); }
   &__ornament--two { bottom: 1%; right: 4%; transform: rotate(-25deg); }
-  &__credit { position: relative; margin: 13px 0 0; color: #15205a; font-size: .75rem; font-weight: 700; text-align: center; }
+  &__credit { position: relative; margin: 0; color: #15205a; font-size: .75rem; font-weight: 700; text-align: center; }
 }
 
 .birthday-card-viewport {
+  position: relative;
+  height: var(--card-height);
+  overflow: clip;
   width: min(100%, 1120px);
   flex: 0 0 auto;
 }
 
 .birthday-card {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(var(--card-scale, 1));
+  transform-origin: top center;
   z-index: 1;
   width: min(100%, 1120px);
   overflow: hidden;
@@ -64,11 +67,11 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
 
   &__header, &__footer {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; padding: 15px clamp(14px, 3vw, 28px);
+    gap: 12px; padding: 9px clamp(14px, 3vw, 28px);
     background: $cream;
   }
   &__header { position: relative; z-index: 2; border-bottom: 2px solid #3b5bff; }
-  &__footer { position: relative; z-index: 2; flex-wrap: wrap; min-height: 54px; border-top: 2px solid #3b5bff; }
+  &__footer { position: relative; z-index: 2; flex-wrap: wrap; min-height: 44px; border-top: 2px solid #3b5bff; }
   &__label {
     display: inline-flex; align-items: center; gap: 6px;
     color: #15205a; font-family: 'Fredoka', sans-serif; font-size: clamp(.96rem, 2vw, 1.18rem); font-weight: 700;
@@ -132,13 +135,10 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
 }
 
 @media (max-width: 620px) {
-  .site { padding: 10px 10px 16px; }
   .birthday-card {
-    &__header, &__footer { padding: 11px 13px; gap: 7px; }
+    &__header, &__footer { gap: 7px; }
     &__note { font-size: .56rem; letter-spacing: .025em; }
     &__heart { display: none; }
-    &__footer { position: relative; z-index: 2; flex-wrap: wrap; min-height: 50px; }
-    &__status { font-size: .68rem; }
     &__footer-mark { display: none; }
   }
   .intro-panel {
@@ -153,47 +153,15 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
 
 @media (max-width: 365px) {
   .birthday-card__note { display: none; }
-  .birthday-card__status { max-width: 53%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
-.site { height: 100dvh; min-height: 0; overflow: clip; }
-  .birthday-card-viewport {
-    position: relative;
-    height: var(--card-height);
-    overflow: clip;
-  }
-  .birthday-card {
-    position: absolute; top: 0; left: 0;
-    transform: scale(var(--card-scale, 1));
-    transform-origin: top center;
-  }
-  .site__credit { margin-top: 0; }
-
-@media (min-width: 960px) {
-  .site { padding-block: 12px; }
-  .birthday-card {
-    &__header, &__footer { padding-block: 9px; }
-    &__footer { min-height: 44px; }
-  }
-}
-
-@media (max-width: 959px) {
-  .site { padding: max(8px, env(safe-area-inset-top)) 6px max(8px, env(safe-area-inset-bottom)); }
-  .site__credit { font-size: .6rem; }
-  .birthday-card {
-    &__header, &__footer { padding: 7px 9px; }
-    &__footer { min-height: 42px; }
-  }
-}
-
 // Mobile gives header, stage and footer explicit shares of one visual viewport.
 @media (max-width: 959px) {
   .site {
-    height: 100dvh; min-height: 0;
     padding: max(6px, env(safe-area-inset-top)) 6px max(6px, env(safe-area-inset-bottom));
   }
   .birthday-card-viewport {
@@ -204,8 +172,8 @@ button:focus-visible { outline: 4px solid #3b5bff; outline-offset: 4px; }
     display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
     &__stage { min-height: 0; }
     &__header { min-height: 34px; padding: 5px 9px; }
-    &__footer { flex-wrap: nowrap; min-height: 44px; padding: 4px 8px; }
-    &__status { max-width: none; font-size: .65rem; }
+    &__footer { flex-wrap: nowrap; padding: 4px 8px; }
+    &__status { font-size: .65rem; }
   }
   .site__credit { flex: 0 0 auto; margin: 4px 0 0; font-size: .6rem; }
   .replay-button { min-height: 34px; }
